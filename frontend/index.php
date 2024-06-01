@@ -106,7 +106,7 @@
                         foreach ($output['result'] as $student) {
                             if ($student["student"] == $nombreEnviado && $student["id"] == $contraseñaEnviado) {
                                 echo '<script type="text/javascript">
-                                        window.location = "welcome.php"
+                                        window.location = "welcome.html"
                                 </script>';
                                 echo "Llegas aca?";
                                 exit;
