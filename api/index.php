@@ -48,10 +48,10 @@ function getCalification($id) {
     $califications = json_decode($calificationsJSON);
 
     foreach ($califications as $calification) {
-        if (!strcmp($calification->id, $id)) {
+        if ($calification->id == $id) {
             sendJSONResponse(200, array(
                 'student' => $calification->student,
-                'calification' => $calification->calification,
+                'calification' => $calification->calification
             ));
             return 1;
         }
@@ -65,3 +65,9 @@ $app->notFound('notFound');
 
 function notFound() {
     sendJSONResponse(401, array('message' => 'Not found'));
+    return 0;
+}
+
+// Handle the request
+$app->handle();
+?>

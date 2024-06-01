@@ -73,8 +73,10 @@
                     <div class="col-auto">
                         <input type="password" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline" name="contrasena">
                     </div>
+                    <div class="col-auto">
+                      <input class="btn btn-primary" type="submit" value="Enviar">
+                    </div>
                 </div>
-                <input class="btn btn-primary" type="submit" value="Submit">
             </form>
         </div>
 
@@ -82,7 +84,6 @@
             <?php
 
                 if (isset($_REQUEST["nombre"]) && isset($_REQUEST["contrasena"])) {
-                    
                     $nombreEnviado = $_REQUEST["nombre"];
                     $contraseñaEnviado = $_REQUEST["contrasena"];
 
@@ -98,15 +99,19 @@
                     $output = json_decode(curl_exec($ch), true);
                     // Get HTTP status code
                     $statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+                    echo $statusCode;
+
                     if ($statusCode == 200) {
                         foreach ($output['result'] as $student) {
                             if ($student["student"] == $nombreEnviado && $student["id"] == $contraseñaEnviado) {
                                 echo '<script type="text/javascript">
                                         window.location = "welcome.php"
                                 </script>';
+                                echo "Llegas aca?";
                                 exit;
                             }else{
-                                echo '<div class="container">Verificar las crdenciales</div>';
+                                echo '<div class="container">Verificar las credenciales</div>';
                             }
                         }
                     }
